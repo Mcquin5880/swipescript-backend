@@ -20,12 +20,26 @@ public class BootstrapData implements CommandLineRunner {
     public void run(String... args) {
 
         List<AppUser> testUsers = List.of(
-                AppUser.builder().username("testuser").password(passwordEncoder.encode("password")).build(),
-                AppUser.builder().username("Tom").build(),
-                AppUser.builder().username("Bob").build(),
-                AppUser.builder().username("Jane").build(),
-                AppUser.builder().username("Michael").build(),
-                AppUser.builder().username("Misty").build()
+                AppUser.builder()
+                        .username("Tom")
+                        .password(passwordEncoder.encode("password"))
+                        .build(),
+                AppUser.builder()
+                        .username("Bob")
+                        .password(passwordEncoder.encode("password"))
+                        .build(),
+                AppUser.builder()
+                        .username("Jane")
+                        .password(passwordEncoder.encode("password"))
+                        .build(),
+                AppUser.builder()
+                        .username("Michael")
+                        .password(passwordEncoder.encode("password"))
+                        .build(),
+                AppUser.builder()
+                        .username("Misty")
+                        .password(passwordEncoder.encode("password"))
+                        .build()
         );
 
         appUserRepository.saveAll(testUsers);
