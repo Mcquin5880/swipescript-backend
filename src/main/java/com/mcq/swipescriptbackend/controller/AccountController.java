@@ -20,6 +20,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/account")
@@ -32,23 +37,9 @@ public class AccountController {
     private final JwtUtil jwtUtil;
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody RegistrationRequestDto registrationRequestDto,
-                                          BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors()) {
-            StringBuilder errors = new StringBuilder();
-            bindingResult.getFieldErrors().forEach(error ->
-                    errors.append(error.getField()).append(": ").append(error.getDefaultMessage()).append("; ")
-            );
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body(errors.toString());
-        }
-
+    public ResponseEntity<?> registerUser(@Valid @RequestBody RegistrationRequestDto registrationRequestDto) {
         if (appUserRepository.findByUsername(registrationRequestDto.getUsername()).isPresent()) {
-            return ResponseEntity
-                    .status(HttpStatus.CONFLICT)
-                    .body("Username is already taken.");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Username is already taken.");
         }
 
         AppUser newUser = AppUser.builder()
@@ -60,7 +51,7 @@ public class AccountController {
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body("User registered successfully.");
+                .body(Map.of("message", "User registered successfully."));
     }
 
     @PostMapping("/login")
@@ -75,7 +66,7 @@ public class AccountController {
 
             String jwt = jwtUtil.generateJwtToken((org.springframework.security.core.userdetails.User) authentication.getPrincipal());
 
-            return ResponseEntity.ok(new LoginResponseDto(jwt));
+            return ResponseEntity.ok(new LoginResponseDto(loginRequestDto.getUsername(), jwt));
 
         } catch (AuthenticationException e) {
             return ResponseEntity

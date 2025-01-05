@@ -13,7 +13,7 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    // Replace this with a secure key from your configuration
+    // todo replace with secure key
     private final String jwtSecret = "YourVerySecureSecretKeyThatShouldBeAtLeast256BitsLong";
 
     // Token validity (e.g., 24 hours)
