@@ -23,42 +23,74 @@ public class BootstrapData implements CommandLineRunner {
     public void run(String... args) {
 
         List<AppUser> testUsers = List.of(
-                createAppUser("bella_barker", "fluffydog456", LocalDate.of(2019, 8, 12), "Bella",
+                createAppUser(
+                        "barkley_paws",
+                        "barkbark123",
+                        LocalDate.of(2018, 3, 15),
+                        "Barkley",
+                        List.of(createPhoto("barkley.png", true)),
+                        "Loyal, adventurous, and a stick-fetching expert, I’m your go-to for spontaneous park adventures and backyard excavations. Warning: I may wag too hard when happy.",
+                        "Digging up your prized garden, stealing shoes, and barking at the mysterious mailman who dares approach the house.",
+                        "A fellow adventurer who doesn’t mind mud and shares my love for chasing squirrels. Bonus points if you can throw a ball farther than my last human.",
+                        "Dogtown",
+                        "Barkland"
+                ),
+                createAppUser(
+                        "bella_barker",
+                        "fluffydog456",
+                        LocalDate.of(2019, 8, 12),
+                        "Bella",
+                        List.of(createPhoto("bella.png", true)),
+                        "Charming and full of life, I’m the life of every puppy party and the queen of the couch. I’m all about making friends and striking adorable poses.",
+                        "Tug-of-war, gourmet kibble, and wearing my collection of seasonal bandanas. Also a big fan of belly rubs (minimum 5 per day required).",
+                        "Someone who loves to play dress-up and doesn’t mind being photobombed during selfies.",
+                        "Fur City",
+                        "Tailtopia"
+                ),
+                createAppUser(
+                        "cocoa_the_chill",
+                        "lazybones123",
+                        LocalDate.of(2015, 6, 5),
+                        "Cocoa",
+                        List.of(createPhoto("cocoa.png", true)),
+                        "The chillest dog you’ll ever meet. My motto? ‘Work hard, nap harder.’ I specialize in long naps, slow walks, and the occasional burst of zoomies when the mood strikes.",
+                        "Cuddling, lounging in sunbeams, and pretending not to hear you when I’m comfortable on the couch. Oh, and belly rubs—lots of them.",
+                        "A fellow couch potato who doesn’t mind sharing their snacks and loves a good movie marathon.",
+                        "Sleepy Hollow",
+                        "Chilltopia"
+                ),
+                createAppUser(
+                        "carol_canine",
+                        "pawsandrelax",
+                        LocalDate.of(2020, 4, 25),
+                        "Carol",
                         List.of(
-                                createPhoto("https://example.com/photos/bella1.jpg", true),
-                                createPhoto("https://example.com/photos/bella2.jpg", false)
-                        )),
-                createAppUser("cocoa_the_chill", "lazybones123", LocalDate.of(2015, 6, 5), "Cocoa",
-                        List.of(
-                                createPhoto("https://example.com/photos/cocoa1.jpg", true),
-                                createPhoto("https://example.com/photos/cocoa2.jpg", false)
-                        )),
-                createAppUser("howling_henry", "awooo123", LocalDate.of(2016, 10, 31), "Henry",
-                        List.of(
-                                createPhoto("https://example.com/photos/henry1.jpg", true),
-                                createPhoto("https://example.com/photos/henry2.jpg", false)
-                        )),
-                createAppUser("daisy_the_diva", "glamdog123", LocalDate.of(2021, 2, 14), "Daisy",
-                        List.of(
-                                createPhoto("https://example.com/photos/daisy1.jpg", true),
-                                createPhoto("https://example.com/photos/daisy2.jpg", false)
-                        )),
-                createAppUser("wiggly_walter", "wagwag456", LocalDate.of(2019, 4, 10), "Walter",
-                        List.of(
-                                createPhoto("https://example.com/photos/walter1.jpg", true),
-                                createPhoto("https://example.com/photos/walter2.jpg", false)
-                        )),
-                createAppUser("snuggles_sophie", "cozydog789", LocalDate.of(2018, 12, 25), "Sophie",
-                        List.of(
-                                createPhoto("https://example.com/photos/sophie1.jpg", true),
-                                createPhoto("https://example.com/photos/sophie2.jpg", false)
-                        ))
+                                createPhoto("carol1.png", true),
+                                createPhoto("carol2.png", false)
+                        ),
+                        "A charming and stylish pup who enjoys the finer things in life, like long naps and gourmet treats. Always ready for an elegant adventure.",
+                        "Fashion, fine dining (dog-friendly, of course), and cozying up on a plush blanket.",
+                        "A sophisticated companion who shares my love for peaceful evenings and an appreciation for gourmet kibble.",
+                        "Pawshville",
+                        "Snoutopia"
+                )
         );
 
         appUserRepository.saveAll(testUsers);
     }
 
-    private AppUser createAppUser(String username, String password, LocalDate dateOfBirth, String knownAs, List<Photo> photos) {
+    private AppUser createAppUser(
+            String username,
+            String password,
+            LocalDate dateOfBirth,
+            String knownAs,
+            List<Photo> photos,
+            String introduction,
+            String interests,
+            String lookingFor,
+            String city,
+            String country) {
+
         AppUser user = AppUser.builder()
                 .username(username)
                 .password(passwordEncoder.encode(password))
@@ -67,11 +99,11 @@ public class BootstrapData implements CommandLineRunner {
                 .created(LocalDateTime.now().minusDays(30))
                 .lastActive(LocalDateTime.now())
                 .gender("Male")
-                .introduction("Sample introduction")
-                .interests("Sample interests")
-                .lookingFor("Sample lookingFor")
-                .city("Sample city")
-                .country("Sample country")
+                .introduction(introduction)
+                .interests(interests)
+                .lookingFor(lookingFor)
+                .city(city)
+                .country(country)
                 .photos(photos)
                 .build();
 
@@ -81,9 +113,9 @@ public class BootstrapData implements CommandLineRunner {
         return user;
     }
 
-    private Photo createPhoto(String url, boolean isMain) {
+    private Photo createPhoto(String filename, boolean isMain) {
         return Photo.builder()
-                .url(url)
+                .url("http://localhost:8080/images/" + filename)
                 .isMain(isMain)
                 .build();
     }

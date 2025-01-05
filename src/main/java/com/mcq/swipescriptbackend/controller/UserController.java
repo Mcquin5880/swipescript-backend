@@ -33,9 +33,9 @@ public class UserController {
         return ResponseEntity.ok(userDtos);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<AppUserDto> getUser(@PathVariable int id) {
-        AppUser user = appUserRepository.findById(id)
+    @GetMapping("/{username}")
+    public ResponseEntity<AppUserDto> getUserByUsername(@PathVariable String username) {
+        AppUser user = appUserRepository.findByUsername(username)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
         return ResponseEntity.ok(appUserService.convertToDto(user));
     }

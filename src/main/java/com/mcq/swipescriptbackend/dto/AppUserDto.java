@@ -1,5 +1,6 @@
 package com.mcq.swipescriptbackend.dto;
 
+import com.mcq.swipescriptbackend.entity.Photo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -22,5 +23,5 @@ public class AppUserDto {
     private String lookingFor;
     private String city;
     private String country;
-    private List<String> photoUrls;
+    private List<Photo> photos;
 }
