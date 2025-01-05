@@ -1,9 +1,15 @@
 package com.mcq.swipescriptbackend.service;
 
 import com.cloudinary.Cloudinary;
+import com.cloudinary.Transformation;
 import com.cloudinary.utils.ObjectUtils;
 import com.mcq.swipescriptbackend.dto.PhotoDto;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.mcq.swipescriptbackend.entity.AppUser;
+import com.mcq.swipescriptbackend.entity.Photo;
+import com.mcq.swipescriptbackend.repository.AppUserRepository;
+import com.mcq.swipescriptbackend.repository.PhotoRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,27 +17,49 @@ import java.io.IOException;
 import java.util.Map;
 
 @Service
+@RequiredArgsConstructor
 public class PhotoService {
 
     private final Cloudinary cloudinary;
+    private final AppUserRepository appUserRepository;
+    private final PhotoRepository photoRepository;
 
-    @Autowired
-    public PhotoService(Cloudinary cloudinary) {
-        this.cloudinary = cloudinary;
+    public PhotoDto uploadPhotoForAuthenticatedUser(MultipartFile file) throws IOException {
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        PhotoDto photoDto = uploadPhoto(file);
+
+        AppUser user = appUserRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        Photo photo = Photo.builder()
+                .url(photoDto.getUrl())
+                .isMain(user.getPhotos().isEmpty()) // Set as main photo if this is the first photo
+                .appUser(user)
+                .build();
+
+        photoRepository.save(photo);
+
+        user.getPhotos().add(photo);
+        appUserRepository.save(user);
+
+        return photoDto;
     }
 
-    // Upload Photo and Return a PhotoDto
     public PhotoDto uploadPhoto(MultipartFile file) throws IOException {
-        // Extract original filename (without extension)
-        String originalFilename = file.getOriginalFilename();
-        String publicId = originalFilename != null ? originalFilename.split("\\.")[0] : "default";
+        // Configure photo transformation
+        Transformation transformation = new Transformation()
+                .width(500)       // Set width to 500px
+                .height(500)      // Set height to 500px
+                .crop("fill")     // Crop to fill the specified dimensions
+                .gravity("auto"); // Optional: Center the image automatically
 
-        // Configure upload parameters
+        // Configure upload parameters with the transformation
         Map<String, Object> uploadParams = ObjectUtils.asMap(
                 "use_filename", false,
-                "unique_filename", true,  // Ensure unique public IDs
-                "public_id", publicId,   // Optional custom public_id
-                "overwrite", true
+                "unique_filename", true,
+                "overwrite", true,
+                "transformation", transformation
         );
 
         // Upload file to Cloudinary
@@ -57,4 +85,3 @@ public class PhotoService {
         return cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
     }
 }
-

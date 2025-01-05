@@ -2,6 +2,8 @@ package com.mcq.swipescriptbackend.controller;
 
 import com.mcq.swipescriptbackend.dto.PhotoDto;
 import com.mcq.swipescriptbackend.service.PhotoService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,19 +13,16 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/photos")
+@RequiredArgsConstructor
 public class PhotoController {
 
     private final PhotoService photoService;
 
-    public PhotoController(PhotoService photoService) {
-        this.photoService = photoService;
-    }
-
     @PostMapping
-    public ResponseEntity<PhotoDto> uploadPhoto(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<PhotoDto> uploadPhotoForUser(@RequestParam("file") MultipartFile file) {
         try {
-            PhotoDto photoDto = photoService.uploadPhoto(file);
-            return ResponseEntity.ok(photoDto);
+            PhotoDto photoDto = photoService.uploadPhotoForAuthenticatedUser(file);
+            return ResponseEntity.status(HttpStatus.CREATED).body(photoDto);
         } catch (IOException e) {
             return ResponseEntity.status(500).body(null);
         }
