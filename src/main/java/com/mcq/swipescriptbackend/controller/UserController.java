@@ -1,11 +1,19 @@
 package com.mcq.swipescriptbackend.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mcq.swipescriptbackend.dto.AppUserDto;
 import com.mcq.swipescriptbackend.dto.MemberUpdateDto;
+import com.mcq.swipescriptbackend.dto.PaginationMetadata;
 import com.mcq.swipescriptbackend.entity.AppUser;
 import com.mcq.swipescriptbackend.repository.AppUserRepository;
 import com.mcq.swipescriptbackend.service.AppUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,12 +31,31 @@ public class UserController {
     private final AppUserService appUserService;
 
     @GetMapping
-    public ResponseEntity<List<AppUserDto>> getAllUsers() {
-        List<AppUserDto> userDtos = appUserRepository.findAll()
-                .stream()
+    public ResponseEntity<List<AppUserDto>> getAllUsers(
+            @RequestParam(name = "pageNumber", defaultValue = "0") int page,
+            @RequestParam(name = "pageSize", defaultValue = "12") int size,
+            @RequestParam(defaultValue = "username") String sortBy) throws JsonProcessingException {
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+        Page<AppUser> userPage = appUserRepository.findAll(pageable);
+
+        List<AppUserDto> userDtos = userPage.getContent().stream()
                 .map(appUserService::convertToDto)
                 .collect(Collectors.toList());
-        return ResponseEntity.ok(userDtos);
+
+        // Pagination header
+        ObjectMapper objectMapper = new ObjectMapper();
+        String paginationJson = objectMapper.writeValueAsString(new PaginationMetadata(
+                userPage.getNumber(),
+                userPage.getSize(),
+                userPage.getTotalElements(),
+                userPage.getTotalPages()
+        ));
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Pagination", paginationJson);
+
+        return ResponseEntity.ok().headers(headers).body(userDtos);
     }
 
     @GetMapping("/{username}")
