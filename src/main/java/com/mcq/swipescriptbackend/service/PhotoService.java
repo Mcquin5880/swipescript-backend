@@ -47,14 +47,13 @@ public class PhotoService {
     }
 
     public PhotoDto uploadPhoto(MultipartFile file) throws IOException {
-        // Configure photo transformation
-        Transformation transformation = new Transformation()
-                .width(500)       // Set width to 500px
-                .height(500)      // Set height to 500px
-                .crop("fill")     // Crop to fill the specified dimensions
-                .gravity("auto"); // Optional: Center the image automatically
 
-        // Configure upload parameters with the transformation
+        Transformation transformation = new Transformation()
+                .width(500)
+                .height(500)
+                .crop("fill")
+                .gravity("auto");
+
         Map<String, Object> uploadParams = ObjectUtils.asMap(
                 "use_filename", false,
                 "unique_filename", true,
@@ -62,10 +61,8 @@ public class PhotoService {
                 "transformation", transformation
         );
 
-        // Upload file to Cloudinary
         Map<String, Object> result = cloudinary.uploader().upload(file.getBytes(), uploadParams);
 
-        // Return a PhotoDto
         return new PhotoDto(
                 (String) result.get("secure_url"),
                 (String) result.get("public_id"),
@@ -75,6 +72,27 @@ public class PhotoService {
                 (int) result.get("height"),
                 (String) result.get("created_at")
         );
+    }
+
+    public void setMainPhoto(int photoId) {
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        AppUser user = appUserRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        Photo photo = photoRepository.findById(photoId)
+                .orElseThrow(() -> new IllegalArgumentException("Photo not found"));
+
+        if (!photo.getAppUser().equals(user)) {
+            throw new IllegalArgumentException("Unauthorized action");
+        }
+
+        user.getPhotos().forEach(p -> p.setMain(false));
+        photo.setMain(true);
+
+        appUserRepository.save(user);
+        photoRepository.save(photo);
     }
 
     public Map<String, Object> getPhotoDetails(String publicId) throws Exception {

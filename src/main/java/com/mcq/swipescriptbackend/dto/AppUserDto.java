@@ -13,6 +13,7 @@ public class AppUserDto {
 
     private int id;
     private String username;
+    private String photoUrl;
     private String knownAs;
     private int age;
     private LocalDateTime created;

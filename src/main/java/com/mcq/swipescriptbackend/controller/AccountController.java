@@ -4,6 +4,7 @@ import com.mcq.swipescriptbackend.dto.LoginRequestDto;
 import com.mcq.swipescriptbackend.dto.LoginResponseDto;
 import com.mcq.swipescriptbackend.dto.RegistrationRequestDto;
 import com.mcq.swipescriptbackend.entity.AppUser;
+import com.mcq.swipescriptbackend.entity.Photo;
 import com.mcq.swipescriptbackend.repository.AppUserRepository;
 import com.mcq.swipescriptbackend.security.JwtUtil;
 import jakarta.validation.Valid;
@@ -66,7 +67,16 @@ public class AccountController {
 
             String jwt = jwtUtil.generateJwtToken((org.springframework.security.core.userdetails.User) authentication.getPrincipal());
 
-            return ResponseEntity.ok(new LoginResponseDto(loginRequestDto.getUsername(), jwt));
+            AppUser user = appUserRepository.findByUsername(loginRequestDto.getUsername())
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+
+            String mainPhotoUrl = user.getPhotos().stream()
+                    .filter(Photo::isMain)
+                    .map(Photo::getUrl)
+                    .findFirst()
+                    .orElse(null);
+
+            return ResponseEntity.ok(new LoginResponseDto(user.getUsername(), jwt, mainPhotoUrl));
 
         } catch (AuthenticationException e) {
             return ResponseEntity

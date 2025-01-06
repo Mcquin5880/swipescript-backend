@@ -28,6 +28,16 @@ public class PhotoController {
         }
     }
 
+    @PatchMapping("/{photoId}/set-main")
+    public ResponseEntity<Void> setMainPhoto(@PathVariable int photoId) {
+        try {
+            photoService.setMainPhoto(photoId);
+            return ResponseEntity.noContent().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+
     @GetMapping("/{publicId}")
     public ResponseEntity<Map<String, Object>> getPhotoDetails(@PathVariable String publicId) {
         try {

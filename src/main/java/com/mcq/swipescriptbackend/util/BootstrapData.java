@@ -73,6 +73,76 @@ public class BootstrapData implements CommandLineRunner {
                         "A sophisticated companion who shares my love for peaceful evenings and an appreciation for gourmet kibble.",
                         "Pawshville",
                         "Snoutopia"
+                ),
+                createAppUser(
+                        "missy",
+                        "password",
+                        LocalDate.of(2020, 4, 25),
+                        "Missy",
+                        List.of(
+                                createPhoto("nice5.png", true)
+                        ),
+                        "A charming and stylish pup who enjoys the finer things in life, like long naps and gourmet treats. Always ready for an elegant adventure.",
+                        "Fashion, fine dining (dog-friendly, of course), and cozying up on a plush blanket.",
+                        "A sophisticated companion who shares my love for peaceful evenings and an appreciation for gourmet kibble.",
+                        "Pawshville",
+                        "Snoutopia"
+                ),
+                createAppUser(
+                        "fratdog",
+                        "password",
+                        LocalDate.of(2020, 4, 25),
+                        "Keith",
+                        List.of(
+                                createPhoto("fratdog.png", true)
+                        ),
+                        "A charming and stylish pup who enjoys the finer things in life, like long naps and gourmet treats. Always ready for an elegant adventure.",
+                        "Fashion, fine dining (dog-friendly, of course), and cozying up on a plush blanket.",
+                        "A sophisticated companion who shares my love for peaceful evenings and an appreciation for gourmet kibble.",
+                        "Pawshville",
+                        "Snoutopia"
+                ),
+                createAppUser(
+                        "woofman",
+                        "password",
+                        LocalDate.of(2020, 4, 25),
+                        "Ian",
+                        List.of(
+                                createPhoto("woofman.png", true)
+                        ),
+                        "A charming and stylish pup who enjoys the finer things in life, like long naps and gourmet treats. Always ready for an elegant adventure.",
+                        "Fashion, fine dining (dog-friendly, of course), and cozying up on a plush blanket.",
+                        "A sophisticated companion who shares my love for peaceful evenings and an appreciation for gourmet kibble.",
+                        "Pawshville",
+                        "Snoutopia"
+                ),
+                createAppUser(
+                        "divadiva",
+                        "password",
+                        LocalDate.of(2020, 4, 25),
+                        "Diva",
+                        List.of(
+                                createPhoto("divadiva.png", true)
+                        ),
+                        "A charming and stylish pup who enjoys the finer things in life, like long naps and gourmet treats. Always ready for an elegant adventure.",
+                        "Fashion, fine dining (dog-friendly, of course), and cozying up on a plush blanket.",
+                        "A sophisticated companion who shares my love for peaceful evenings and an appreciation for gourmet kibble.",
+                        "Pawshville",
+                        "Snoutopia"
+                ),
+                createAppUser(
+                        "doofy",
+                        "password",
+                        LocalDate.of(2020, 4, 25),
+                        "Doofy",
+                        List.of(
+                                createPhoto("doofy.png", true)
+                        ),
+                        "A charming and stylish pup who enjoys the finer things in life, like long naps and gourmet treats. Always ready for an elegant adventure.",
+                        "Fashion, fine dining (dog-friendly, of course), and cozying up on a plush blanket.",
+                        "A sophisticated companion who shares my love for peaceful evenings and an appreciation for gourmet kibble.",
+                        "Pawshville",
+                        "Snoutopia"
                 )
         );
 

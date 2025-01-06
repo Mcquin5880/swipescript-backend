@@ -9,7 +9,7 @@ public class PhotoDto {
     private String url;
     private String publicId;
     private String format;
-    private int bytes;           // Changed from long to int
+    private int bytes;
     private int width;
     private int height;
     private String createdAt;
