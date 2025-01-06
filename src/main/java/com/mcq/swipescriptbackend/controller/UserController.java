@@ -16,6 +16,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -31,22 +33,24 @@ public class UserController {
     private final AppUserService appUserService;
 
     @GetMapping
-    public ResponseEntity<List<AppUserDto>> getAllUsers(
-            @RequestParam(name = "pageNumber", defaultValue = "0") int page,
-            @RequestParam(name = "pageSize", defaultValue = "12") int size,
+    public ResponseEntity<List<AppUserDto>> getFilteredUsers(
+            @RequestParam(required = false) String gender,
+            @RequestParam(defaultValue = "1") int pageNumber,
+            @RequestParam(defaultValue = "12") int pageSize,
             @RequestParam(defaultValue = "username") String sortBy) throws JsonProcessingException {
 
-        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
-        Page<AppUser> userPage = appUserRepository.findAll(pageable);
+        String currentUsername = getCurrentUsername();
+        Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, Sort.by(sortBy));
+        Page<AppUser> userPage = appUserRepository.findFilteredUsers(gender, currentUsername, pageable);
 
         List<AppUserDto> userDtos = userPage.getContent().stream()
                 .map(appUserService::convertToDto)
                 .collect(Collectors.toList());
 
-        // Pagination header
+        // Prepare the Pagination metadata
         ObjectMapper objectMapper = new ObjectMapper();
         String paginationJson = objectMapper.writeValueAsString(new PaginationMetadata(
-                userPage.getNumber(),
+                userPage.getNumber() + 1,  // Convert back to 1-based for the response
                 userPage.getSize(),
                 userPage.getTotalElements(),
                 userPage.getTotalPages()
@@ -72,5 +76,14 @@ public class UserController {
 
         appUserService.updateUserProfile(user, memberUpdateDto);
         return ResponseEntity.noContent().build();
+    }
+
+    private String getCurrentUsername() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            return ((UserDetails) principal).getUsername();
+        } else {
+            return principal.toString();
+        }
     }
 }

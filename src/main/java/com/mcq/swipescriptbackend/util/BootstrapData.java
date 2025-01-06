@@ -28,6 +28,7 @@ public class BootstrapData implements CommandLineRunner {
                         "barkbark123",
                         LocalDate.of(2018, 3, 15),
                         "Barkley",
+                        "male",
                         List.of(createPhoto("barkley.png", true)),
                         "Loyal, adventurous, and a stick-fetching expert, I’m your go-to for spontaneous park adventures and backyard excavations. Warning: I may wag too hard when happy.",
                         "Digging up your prized garden, stealing shoes, and barking at the mysterious mailman who dares approach the house.",
@@ -40,6 +41,7 @@ public class BootstrapData implements CommandLineRunner {
                         "fluffydog456",
                         LocalDate.of(2019, 8, 12),
                         "Bella",
+                        "female",
                         List.of(createPhoto("bella.png", true)),
                         "Charming and full of life, I’m the life of every puppy party and the queen of the couch. I’m all about making friends and striking adorable poses.",
                         "Tug-of-war, gourmet kibble, and wearing my collection of seasonal bandanas. Also a big fan of belly rubs (minimum 5 per day required).",
@@ -52,6 +54,7 @@ public class BootstrapData implements CommandLineRunner {
                         "lazybones123",
                         LocalDate.of(2015, 6, 5),
                         "Cocoa",
+                        "female",
                         List.of(createPhoto("cocoa.png", true)),
                         "The chillest dog you’ll ever meet. My motto? ‘Work hard, nap harder.’ I specialize in long naps, slow walks, and the occasional burst of zoomies when the mood strikes.",
                         "Cuddling, lounging in sunbeams, and pretending not to hear you when I’m comfortable on the couch. Oh, and belly rubs—lots of them.",
@@ -64,6 +67,7 @@ public class BootstrapData implements CommandLineRunner {
                         "pass",
                         LocalDate.of(2020, 4, 25),
                         "Carol",
+                        "female",
                         List.of(
                                 createPhoto("carol1.png", true),
                                 createPhoto("carol2.png", false)
@@ -79,6 +83,7 @@ public class BootstrapData implements CommandLineRunner {
                         "password",
                         LocalDate.of(2020, 4, 25),
                         "Missy",
+                        "female",
                         List.of(
                                 createPhoto("nice5.png", true)
                         ),
@@ -93,6 +98,7 @@ public class BootstrapData implements CommandLineRunner {
                         "password",
                         LocalDate.of(2020, 4, 25),
                         "Keith",
+                        "male",
                         List.of(
                                 createPhoto("fratdog.png", true)
                         ),
@@ -107,6 +113,7 @@ public class BootstrapData implements CommandLineRunner {
                         "password",
                         LocalDate.of(2020, 4, 25),
                         "Ian",
+                        "male",
                         List.of(
                                 createPhoto("woofman.png", true)
                         ),
@@ -121,6 +128,7 @@ public class BootstrapData implements CommandLineRunner {
                         "password",
                         LocalDate.of(2020, 4, 25),
                         "Diva",
+                        "female",
                         List.of(
                                 createPhoto("divadiva.png", true)
                         ),
@@ -135,6 +143,7 @@ public class BootstrapData implements CommandLineRunner {
                         "password",
                         LocalDate.of(2020, 4, 25),
                         "Doofy",
+                        "male",
                         List.of(
                                 createPhoto("doofy.png", true)
                         ),
@@ -154,6 +163,7 @@ public class BootstrapData implements CommandLineRunner {
             String password,
             LocalDate dateOfBirth,
             String knownAs,
+            String gender,
             List<Photo> photos,
             String introduction,
             String interests,
@@ -166,9 +176,9 @@ public class BootstrapData implements CommandLineRunner {
                 .password(passwordEncoder.encode(password))
                 .dateOfBirth(dateOfBirth)
                 .knownAs(knownAs)
+                .gender(gender)
                 .created(LocalDateTime.now().minusDays(30))
                 .lastActive(LocalDateTime.now())
-                .gender("Male")
                 .introduction(introduction)
                 .interests(interests)
                 .lookingFor(lookingFor)
