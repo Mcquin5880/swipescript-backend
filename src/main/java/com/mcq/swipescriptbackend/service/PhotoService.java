@@ -9,6 +9,7 @@ import com.mcq.swipescriptbackend.entity.Photo;
 import com.mcq.swipescriptbackend.repository.AppUserRepository;
 import com.mcq.swipescriptbackend.repository.PhotoRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,6 +19,7 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class PhotoService {
 
     private final Cloudinary cloudinary;
@@ -27,26 +29,24 @@ public class PhotoService {
     public PhotoDto uploadPhotoForAuthenticatedUser(MultipartFile file) throws IOException {
 
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        PhotoDto photoDto = uploadPhoto(file);
+        String photoUrl = uploadPhotoToCloudinary(file);
 
         AppUser user = appUserRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
         Photo photo = Photo.builder()
-                .url(photoDto.getUrl())
-                .isMain(user.getPhotos().isEmpty()) // Set as main photo if this is the first photo
+                .url(photoUrl)
+                .isMain(user.getPhotos().isEmpty())
                 .appUser(user)
                 .build();
 
         photoRepository.save(photo);
-
         user.getPhotos().add(photo);
         appUserRepository.save(user);
-
-        return photoDto;
+        return toPhotoDto(photo);
     }
 
-    public PhotoDto uploadPhoto(MultipartFile file) throws IOException {
+    private String uploadPhotoToCloudinary(MultipartFile file) throws IOException {
 
         Transformation transformation = new Transformation()
                 .width(500)
@@ -54,24 +54,14 @@ public class PhotoService {
                 .crop("fill")
                 .gravity("auto");
 
-        Map<String, Object> uploadParams = ObjectUtils.asMap(
+        Map<String, Object> result = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.asMap(
                 "use_filename", false,
                 "unique_filename", true,
                 "overwrite", true,
                 "transformation", transformation
-        );
+        ));
 
-        Map<String, Object> result = cloudinary.uploader().upload(file.getBytes(), uploadParams);
-
-        return new PhotoDto(
-                (String) result.get("secure_url"),
-                (String) result.get("public_id"),
-                (String) result.get("format"),
-                (int) result.get("bytes"),
-                (int) result.get("width"),
-                (int) result.get("height"),
-                (String) result.get("created_at")
-        );
+        return (String) result.get("secure_url");
     }
 
     public void setMainPhoto(int photoId) {
@@ -95,11 +85,45 @@ public class PhotoService {
         photoRepository.save(photo);
     }
 
-    public Map<String, Object> getPhotoDetails(String publicId) throws Exception {
-        return cloudinary.api().resource(publicId, ObjectUtils.asMap("quality_analysis", true));
+    public void deletePhoto(int photoId) throws IOException {
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        AppUser user = appUserRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        Photo photo = photoRepository.findById(photoId)
+                .orElseThrow(() -> new IllegalArgumentException("Photo not found"));
+
+        if (!photo.getAppUser().equals(user)) {
+            throw new IllegalArgumentException("Unauthorized action");
+        }
+
+        if (photo.isMain()) {
+            throw new IllegalArgumentException("Cannot delete the main photo");
+        }
+
+        // Attempt to remove the photo from Cloudinary
+        try {
+            Map<String, Object> result = cloudinary.uploader().destroy(photo.getUrl(), ObjectUtils.emptyMap());
+            if (!"ok".equals(result.get("result"))) {
+                log.warn("Photo not found on Cloudinary or deletion failed: {}", photo.getUrl());
+            } else {
+                log.info("Photo successfully deleted from Cloudinary: {}", photo.getUrl());
+            }
+        } catch (Exception e) {
+            log.error("Error deleting photo from Cloudinary (possibly hosted locally): {}", e.getMessage(), e);
+        }
+
+        user.getPhotos().remove(photo);
+        photoRepository.delete(photo);
     }
 
-    public Map<String, Object> deletePhoto(String publicId) throws IOException {
-        return cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
+    private PhotoDto toPhotoDto(Photo photo) {
+        return new PhotoDto(
+                photo.getId(),
+                photo.getUrl(),
+                photo.isMain()
+        );
     }
 }

@@ -28,33 +28,26 @@ public class PhotoController {
         }
     }
 
-    @PatchMapping("/{photoId}/set-main")
-    public ResponseEntity<Void> setMainPhoto(@PathVariable int photoId) {
+    // todo maybe refactor url so id is at end
+    @PatchMapping("/{id}/set-main")
+    public ResponseEntity<Void> setMainPhoto(@PathVariable int id) {
         try {
-            photoService.setMainPhoto(photoId);
+            photoService.setMainPhoto(id);
             return ResponseEntity.noContent().build();
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
     }
 
-    @GetMapping("/{publicId}")
-    public ResponseEntity<Map<String, Object>> getPhotoDetails(@PathVariable String publicId) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePhoto(@PathVariable int id) {
         try {
-            Map<String, Object> result = photoService.getPhotoDetails(publicId);
-            return ResponseEntity.ok(result);
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body(Map.of("error", "Failed to fetch photo details"));
-        }
-    }
-
-    @DeleteMapping("/{publicId}")
-    public ResponseEntity<Map<String, Object>> deletePhoto(@PathVariable String publicId) {
-        try {
-            Map<String, Object> result = photoService.deletePhoto(publicId);
-            return ResponseEntity.ok(result);
+            photoService.deletePhoto(id);
+            return ResponseEntity.noContent().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         } catch (IOException e) {
-            return ResponseEntity.status(500).body(Map.of("error", "Photo deletion failed"));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 500 Internal Server Error for Cloudinary issues
         }
     }
 }

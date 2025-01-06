@@ -60,8 +60,8 @@ public class BootstrapData implements CommandLineRunner {
                         "Chilltopia"
                 ),
                 createAppUser(
-                        "carol_canine",
-                        "pawsandrelax",
+                        "carol",
+                        "pass",
                         LocalDate.of(2020, 4, 25),
                         "Carol",
                         List.of(

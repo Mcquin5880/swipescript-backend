@@ -6,11 +6,8 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class PhotoDto {
+    
+    private int id;
     private String url;
-    private String publicId;
-    private String format;
-    private int bytes;
-    private int width;
-    private int height;
-    private String createdAt;
+    private boolean isMain;
 }

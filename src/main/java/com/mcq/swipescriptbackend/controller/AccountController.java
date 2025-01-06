@@ -9,6 +9,7 @@ import com.mcq.swipescriptbackend.repository.AppUserRepository;
 import com.mcq.swipescriptbackend.security.JwtUtil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,6 +31,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/account")
 @RequiredArgsConstructor
+@Slf4j
 public class AccountController {
 
     private final AppUserRepository appUserRepository;
@@ -39,6 +41,7 @@ public class AccountController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody RegistrationRequestDto registrationRequestDto) {
+
         if (appUserRepository.findByUsername(registrationRequestDto.getUsername()).isPresent()) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Username is already taken.");
         }
@@ -46,14 +49,26 @@ public class AccountController {
         AppUser newUser = AppUser.builder()
                 .username(registrationRequestDto.getUsername())
                 .password(passwordEncoder.encode(registrationRequestDto.getPassword()))
+                .knownAs(registrationRequestDto.getKnownAs())
+                .dateOfBirth(registrationRequestDto.getDateOfBirth())
+                .gender(registrationRequestDto.getGender())
+                .city(registrationRequestDto.getCity())
+                .country(registrationRequestDto.getCountry())
                 .build();
 
         appUserRepository.save(newUser);
 
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(Map.of("message", "User registered successfully."));
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        registrationRequestDto.getUsername(),
+                        registrationRequestDto.getPassword()
+                )
+        );
+
+        String token = jwtUtil.generateJwtToken((org.springframework.security.core.userdetails.User) authentication.getPrincipal());
+        return ResponseEntity.ok(new LoginResponseDto(newUser.getUsername(), token, null));
     }
+
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequestDto loginRequestDto) {
