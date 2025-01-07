@@ -66,7 +66,7 @@ public class AccountController {
         );
 
         String token = jwtUtil.generateJwtToken((org.springframework.security.core.userdetails.User) authentication.getPrincipal());
-        return ResponseEntity.ok(new LoginResponseDto(newUser.getUsername(), token, null));
+        return ResponseEntity.ok(new LoginResponseDto(newUser.getUsername(), token, newUser.getGender(), newUser.getKnownAs(), null));
     }
 
 
@@ -91,7 +91,7 @@ public class AccountController {
                     .findFirst()
                     .orElse(null);
 
-            return ResponseEntity.ok(new LoginResponseDto(user.getUsername(), jwt, mainPhotoUrl));
+            return ResponseEntity.ok(new LoginResponseDto(user.getUsername(), jwt, user.getGender(), user.getKnownAs(), mainPhotoUrl));
 
         } catch (AuthenticationException e) {
             return ResponseEntity

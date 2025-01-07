@@ -9,5 +9,7 @@ public class LoginResponseDto {
 
     private String username;
     private String token;
+    private String gender;
+    private String knownAs;
     private String photoUrl;
 }

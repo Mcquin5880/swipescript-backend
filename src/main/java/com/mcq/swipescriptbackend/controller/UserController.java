@@ -35,13 +35,15 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<AppUserDto>> getFilteredUsers(
             @RequestParam(required = false) String gender,
+            @RequestParam(required = false) Integer minAge,
+            @RequestParam(required = false) Integer maxAge,
             @RequestParam(defaultValue = "1") int pageNumber,
             @RequestParam(defaultValue = "12") int pageSize,
             @RequestParam(defaultValue = "username") String sortBy) throws JsonProcessingException {
 
         String currentUsername = getCurrentUsername();
         Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, Sort.by(sortBy));
-        Page<AppUser> userPage = appUserRepository.findFilteredUsers(gender, currentUsername, pageable);
+        Page<AppUser> userPage = appUserRepository.findFilteredUsers(gender, minAge, maxAge, currentUsername, pageable);
 
         List<AppUserDto> userDtos = userPage.getContent().stream()
                 .map(appUserService::convertToDto)

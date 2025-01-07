@@ -26,7 +26,7 @@ public class BootstrapData implements CommandLineRunner {
                 createAppUser(
                         "barkley_paws",
                         "barkbark123",
-                        LocalDate.of(2018, 3, 15),
+                        LocalDate.of(1988, 3, 15),
                         "Barkley",
                         "male",
                         List.of(createPhoto("barkley.png", true)),
@@ -39,7 +39,7 @@ public class BootstrapData implements CommandLineRunner {
                 createAppUser(
                         "bella_barker",
                         "fluffydog456",
-                        LocalDate.of(2019, 8, 12),
+                        LocalDate.of(2000, 8, 12),
                         "Bella",
                         "female",
                         List.of(createPhoto("bella.png", true)),
@@ -52,7 +52,7 @@ public class BootstrapData implements CommandLineRunner {
                 createAppUser(
                         "cocoa_the_chill",
                         "lazybones123",
-                        LocalDate.of(2015, 6, 5),
+                        LocalDate.of(2002, 6, 5),
                         "Cocoa",
                         "female",
                         List.of(createPhoto("cocoa.png", true)),
@@ -65,7 +65,7 @@ public class BootstrapData implements CommandLineRunner {
                 createAppUser(
                         "carol",
                         "pass",
-                        LocalDate.of(2020, 4, 25),
+                        LocalDate.of(1975, 4, 25),
                         "Carol",
                         "female",
                         List.of(
@@ -81,7 +81,7 @@ public class BootstrapData implements CommandLineRunner {
                 createAppUser(
                         "missy",
                         "password",
-                        LocalDate.of(2020, 4, 25),
+                        LocalDate.of(2006, 4, 25),
                         "Missy",
                         "female",
                         List.of(
@@ -96,7 +96,7 @@ public class BootstrapData implements CommandLineRunner {
                 createAppUser(
                         "fratdog",
                         "password",
-                        LocalDate.of(2020, 4, 25),
+                        LocalDate.of(2004, 4, 25),
                         "Keith",
                         "male",
                         List.of(
@@ -111,7 +111,7 @@ public class BootstrapData implements CommandLineRunner {
                 createAppUser(
                         "woofman",
                         "password",
-                        LocalDate.of(2020, 4, 25),
+                        LocalDate.of(1999, 4, 25),
                         "Ian",
                         "male",
                         List.of(
@@ -126,7 +126,7 @@ public class BootstrapData implements CommandLineRunner {
                 createAppUser(
                         "divadiva",
                         "password",
-                        LocalDate.of(2020, 4, 25),
+                        LocalDate.of(1996, 4, 25),
                         "Diva",
                         "female",
                         List.of(
@@ -141,7 +141,7 @@ public class BootstrapData implements CommandLineRunner {
                 createAppUser(
                         "doofy",
                         "password",
-                        LocalDate.of(2020, 4, 25),
+                        LocalDate.of(2003, 4, 25),
                         "Doofy",
                         "male",
                         List.of(

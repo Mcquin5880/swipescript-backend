@@ -15,9 +15,13 @@ public interface AppUserRepository extends JpaRepository<AppUser, Integer> {
 
     @Query("SELECT u FROM AppUser u " +
             "WHERE (:gender IS NULL OR u.gender = :gender) " +
-            "AND (u.username <> :currentUsername)")
+            "AND (:minAge IS NULL OR (YEAR(CURRENT_DATE) - YEAR(u.dateOfBirth)) >= :minAge) " +
+            "AND (:maxAge IS NULL OR (YEAR(CURRENT_DATE) - YEAR(u.dateOfBirth)) <= :maxAge) " +
+            "AND u.username <> :currentUsername")
     Page<AppUser> findFilteredUsers(
             @Param("gender") String gender,
+            @Param("minAge") Integer minAge,
+            @Param("maxAge") Integer maxAge,
             @Param("currentUsername") String currentUsername,
             Pageable pageable
     );
