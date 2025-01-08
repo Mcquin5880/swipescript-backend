@@ -26,28 +26,27 @@ public class LikesController {
     private final AppUserService appUserService;
 
     @PostMapping("/{id}")
-    public ResponseEntity<String> toggleLike(@PathVariable int id) {
+    public ResponseEntity<Void> toggleLike(@PathVariable int id) {
 
         AppUser currentUser = getCurrentUser();
 
         if (currentUser.getId() == id) {
-            return ResponseEntity.badRequest().body("You cannot like/unlike yourself.");
+            return ResponseEntity.badRequest().build();
         }
 
         AppUser userToLike = appUserRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        // If already liked, remove (unlike)
+        // Toggle like/unlike
         if (currentUser.getLikedUsers().contains(userToLike)) {
             currentUser.getLikedUsers().remove(userToLike);
-            appUserRepository.save(currentUser);
-            return ResponseEntity.ok("User " + id + " unliked.");
         } else {
-            // Otherwise, add to the set (like)
             currentUser.getLikedUsers().add(userToLike);
-            appUserRepository.save(currentUser);
-            return ResponseEntity.ok("User " + id + " liked.");
         }
+
+        appUserRepository.save(currentUser);
+
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping
@@ -79,6 +78,17 @@ public class LikesController {
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(dtos);
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<List<Integer>> getLikedUserIds() {
+        AppUser currentUser = getCurrentUser();
+
+        List<Integer> likedUserIds = currentUser.getLikedUsers().stream()
+                .map(AppUser::getId)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(likedUserIds);
     }
 
     private AppUser getCurrentUser() {
