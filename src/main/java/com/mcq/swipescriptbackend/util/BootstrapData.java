@@ -228,7 +228,7 @@ public class BootstrapData implements CommandLineRunner {
                 createAppUser(
                         "bella_barker",
                         "fetchqueen123",
-                        LocalDate.of(2004, 9, 18), // She's 21!
+                        LocalDate.of(2004, 9, 18),
                         "Bella",
                         "female",
                         List.of(createPhoto("bella.png", true)),
