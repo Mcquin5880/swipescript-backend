@@ -32,9 +32,16 @@ public class AppUser {
     private LocalDateTime created;
     private LocalDateTime lastActive;
     private String gender;
+
+    @Column(length = 2000)
     private String introduction;
+
+    @Column(length = 2000)
     private String interests;
+
+    @Column(length = 2000)
     private String lookingFor;
+
     private String city;
     private String country;
 
