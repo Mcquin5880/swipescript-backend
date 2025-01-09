@@ -1,18 +1,3 @@
 spring:
   application:
     name: swipescript-backend
-  datasource:
-    url: jdbc:h2:mem:mydb
-    username: sa
-  h2:
-    console:
-      enabled: true
-
-
-#logging:
-#  level:
-#    org.springframework: DEBUG
-#    org.hibernate: DEBUG
-#    org.springframework.web: DEBUG
-#    com.fasterxml.jackson: DEBUG
-#    org.springframework.security: DEBUG

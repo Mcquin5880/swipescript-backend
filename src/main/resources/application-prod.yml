@@ -1,0 +1,26 @@
+server:
+  port: 5000
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${RDS_HOSTNAME}:${RDS_PORT}/${RDS_DB_NAME}
+    username: ${RDS_USERNAME}
+    password: ${RDS_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+cloudinary:
+  url: "${CLOUDINARY_URL}"
+
+jwt:
+  secret: "${JWT_SECRET}"
+
+app:
+  image:
+    url-prefix: "http://swipescript-test.us-east-1.elasticbeanstalk.com/images/"

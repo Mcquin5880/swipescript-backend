@@ -4,6 +4,7 @@ import com.mcq.swipescriptbackend.entity.AppUser;
 import com.mcq.swipescriptbackend.entity.Photo;
 import com.mcq.swipescriptbackend.repository.AppUserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,9 @@ public class BootstrapData implements CommandLineRunner {
 
     private final AppUserRepository appUserRepository;
     private final PasswordEncoder passwordEncoder;
+
+        @Value("${app.image.url-prefix}")
+        private String imageUrlPrefix;
 
     @Override
     public void run(String... args) {
@@ -546,7 +550,7 @@ public class BootstrapData implements CommandLineRunner {
 
     private Photo createPhoto(String filename, boolean isMain) {
         return Photo.builder()
-                .url("http://localhost:8080/images/" + filename)
+                .url(imageUrlPrefix + filename)
                 .isMain(isMain)
                 .build();
     }

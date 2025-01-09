@@ -17,19 +17,14 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
-
 @RestController
-@RequestMapping("/api/account")
+@RequestMapping("api/account")
 @RequiredArgsConstructor
 @Slf4j
 public class AccountController {
@@ -39,7 +34,7 @@ public class AccountController {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
 
-    @PostMapping("/register")
+    @PostMapping("register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody RegistrationRequestDto registrationRequestDto) {
 
         if (appUserRepository.findByUsername(registrationRequestDto.getUsername()).isPresent()) {
@@ -70,7 +65,7 @@ public class AccountController {
     }
 
 
-    @PostMapping("/login")
+    @PostMapping("login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequestDto loginRequestDto) {
         try {
             Authentication authentication = authenticationManager.authenticate(

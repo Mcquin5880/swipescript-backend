@@ -57,7 +57,11 @@ public class SecurityConfig {
 
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(List.of("http://localhost:4200"));
+        configuration.setAllowedOrigins(List.of(
+                "http://localhost:4200", // For local testing
+                "http://swipescript-test.us-east-1.elasticbeanstalk.com", // AWS domain
+                "http://swipescript-fe.s3-website.us-east-2.amazonaws.com" // S3 Domain
+        ));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);

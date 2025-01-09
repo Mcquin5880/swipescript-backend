@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/swipescript-db
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+cloudinary:
+  url: "${CLOUDINARY_URL}"
+
+jwt:
+  secret: "${JWT_SECRET}"
+
+app:
+  image:
+    url-prefix: "http://localhost:8080/images/"

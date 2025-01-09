@@ -4,6 +4,8 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -13,15 +15,18 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    // todo replace with secure key
-    private final String jwtSecret = "YourVerySecureSecretKeyThatShouldBeAtLeast256BitsLong";
+    @Value("${jwt.secret}")
+    private String jwtSecret;
 
-    // Token validity (e.g., 24 hours)
     private final int jwtExpirationMs = 86400000;
+    private Key key;
 
-    private final Key key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
+    // Initialize the signing key after the secret is injected
+    @PostConstruct
+    public void init() {
+        this.key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
+    }
 
-    // Generate JWT token based on user details
     public String generateJwtToken(UserDetails userDetails) {
         return Jwts.builder()
                 .setSubject((userDetails.getUsername()))
