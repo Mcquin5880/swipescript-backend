@@ -64,7 +64,7 @@ public class PhotoService {
         return (String) result.get("secure_url");
     }
 
-    public void setMainPhoto(int photoId) {
+    public void setMainPhoto(long photoId) {
 
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
@@ -85,7 +85,7 @@ public class PhotoService {
         photoRepository.save(photo);
     }
 
-    public void deletePhoto(int photoId) throws IOException {
+    public void deletePhoto(long photoId) throws IOException {
 
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
 

@@ -26,7 +26,7 @@ public class LikesController {
     private final AppUserService appUserService;
 
     @PostMapping("/{id}")
-    public ResponseEntity<Void> toggleLike(@PathVariable int id) {
+    public ResponseEntity<Void> toggleLike(@PathVariable long id) {
 
         AppUser currentUser = getCurrentUser();
 
@@ -81,10 +81,10 @@ public class LikesController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<Integer>> getLikedUserIds() {
+    public ResponseEntity<List<Long>> getLikedUserIds() {
         AppUser currentUser = getCurrentUser();
 
-        List<Integer> likedUserIds = currentUser.getLikedUsers().stream()
+        List<Long> likedUserIds = currentUser.getLikedUsers().stream()
                 .map(AppUser::getId)
                 .collect(Collectors.toList());
 

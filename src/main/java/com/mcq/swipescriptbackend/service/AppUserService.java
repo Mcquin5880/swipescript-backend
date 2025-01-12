@@ -33,7 +33,7 @@ public class AppUserService {
                 user.getInterests(),
                 user.getLookingFor(),
                 user.getCity(),
-                user.getCountry(),
+                user.getState(),
                 user.getPhotos()
         );
     }
@@ -44,7 +44,7 @@ public class AppUserService {
         user.setLookingFor(memberUpdateDto.getLookingFor());
         user.setInterests(memberUpdateDto.getInterests());
         user.setCity(memberUpdateDto.getCity());
-        user.setCountry(memberUpdateDto.getCountry());
+        user.setState(memberUpdateDto.getState());
         user.setLastActive(LocalDateTime.now());
     }
 }

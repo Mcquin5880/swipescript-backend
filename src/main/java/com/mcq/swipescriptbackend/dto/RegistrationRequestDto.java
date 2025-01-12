@@ -33,6 +33,5 @@ public class RegistrationRequestDto {
     private String city;
 
     @NotBlank(message = "Country is required")
-    @Size(max = 20, message = "Country must not exceed 20 characters")
-    private String country;
+    private String state;
 }

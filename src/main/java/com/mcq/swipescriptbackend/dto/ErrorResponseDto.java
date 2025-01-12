@@ -16,5 +16,5 @@ public class ErrorResponseDto {
     private String error;
     private String message;
     private String path;
-    private Map<String, String> validationErrors; // Optional for field-specific validation errors
+    private Map<String, String> validationErrors;
 }

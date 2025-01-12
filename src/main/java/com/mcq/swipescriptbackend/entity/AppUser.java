@@ -22,28 +22,35 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @EqualsAndHashCode.Include
-    private int id;
+    private long id;
 
     private String username;
+
     private String password;
 
     private LocalDate dateOfBirth;
+
     private String knownAs;
+
+    @Column(updatable = false)
     private LocalDateTime created;
+
     private LocalDateTime lastActive;
+
     private String gender;
 
-    @Column(length = 2000)
+    @Column(columnDefinition = "TEXT")
     private String introduction;
 
-    @Column(length = 2000)
+    @Column(columnDefinition = "TEXT")
     private String interests;
 
-    @Column(length = 2000)
+    @Column(columnDefinition = "TEXT")
     private String lookingFor;
 
     private String city;
-    private String country;
+
+    private String state;
 
     @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Photo> photos;
@@ -59,10 +66,21 @@ public class AppUser {
     @ManyToMany(mappedBy = "likedUsers")
     private Set<AppUser> likedByUsers = new HashSet<>();
 
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Message> messagesSent;
+
+    @OneToMany(mappedBy = "recipient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Message> messagesReceived;
+
     public int getAge() {
         if (dateOfBirth == null) {
             throw new IllegalStateException("Date of birth is not set.");
         }
         return Period.between(dateOfBirth, LocalDate.now()).getYears();
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        this.created = LocalDateTime.now();
     }
 }

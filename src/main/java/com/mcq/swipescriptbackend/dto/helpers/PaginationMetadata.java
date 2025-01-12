@@ -1,4 +1,4 @@
-package com.mcq.swipescriptbackend.dto;
+package com.mcq.swipescriptbackend.dto.helpers;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class PhotoDto {
     
-    private int id;
+    private long id;
     private String url;
     private boolean isMain;
 }

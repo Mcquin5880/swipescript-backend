@@ -39,7 +39,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Selective hearing (only applies to the word 'bath'), proudly muddy paws, and a deep distrust of the vacuum cleaner. I also moonlight as a mailman deterrent and part-time squirrel chaser.",
                         "Looking for someone who loves rolling in the grass, long walks under the moonlight, and can handle a tug-of-war champion. Bonus points if you have a bottomless treat jar and know how to throw a Frisbee like a pro.",
                         "Puppytown",
-                        "Boneville"
+                        "California"
                 ),
                 createAppUser(
                         "rufus_rascal",
@@ -52,7 +52,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Unrolling toilet paper, stealing socks, and mysteriously making your sandwich disappear when you’re not looking. I also enjoy moonlit howling sessions and dramatic belly flops into puddles.",
                         "Looking for a partner in crime who loves late-night snack raids and isn’t afraid to get their paws dirty. Bonus points if you know how to open the fridge.",
                         "Trashcan Alley",
-                        "Barkadia"
+                        "Texas"
                 ),
                 createAppUser(
                         "sir_barksalot",
@@ -65,11 +65,11 @@ public class BootstrapData implements CommandLineRunner {
                         "Micromanaging squirrels, winning at tug-of-war, and barking at delivery drivers to ensure package security. I’m also a big fan of power naps and gourmet kibble tastings.",
                         "Looking for a classy companion who enjoys long walks in the city, rooftop sunset views, and has a passion for sniffing out new opportunities. Bonus points if you can keep up with my busy schedule and don’t mind the occasional boardroom bark.",
                         "Pawston",
-                        "New Bark City"
+                        "Florida"
                 ),
                 createAppUser(
                         "woofman",
-                        "pupperLifts99",
+                        "password",
                         LocalDate.of(1999, 4, 25),
                         "Ian",
                         "male",
@@ -78,7 +78,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Spilling my protein shake all over the floor, chasing my tail for cardio, and barking at mirrors (I mean, who is that handsome dog?). Also, I’ve been known to hog the tennis ball machine at the park.",
                         "Looking for a workout partner who can keep up with my energy and doesn’t mind sharing their snacks post-workout. Bonus points if you can throw a Frisbee far enough for me to break a sweat!",
                         "Flexington",
-                        "Gainzville"
+                        "New York"
                 ),
                 createAppUser(
                         "doug_the_barkeologist",
@@ -91,7 +91,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Accidentally digging up flower beds, chasing the neighbor’s cat (purely for cardio), and gnawing on historical artifacts. I also host a weekly seminar on ‘Bone Preservation Techniques’ at the local park.",
                         "Looking for someone who loves adventure, appreciates a good dirt bath, and doesn’t mind sharing their snacks while stargazing. Bonus points if you have a backyard with excavation potential.",
                         "Digsylvania",
-                        "Boneapolis"
+                        "Illinois"
                 ),
                 createAppUser(
                         "professor_paws",
@@ -104,7 +104,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Correcting your grammar with a wag of my tail, chewing on a squeaky abacus, and teaching advanced tail-chasing techniques. I also enjoy pondering the mysteries of the universe while basking in sunbeams.",
                         "Seeking an intellectual equal who can appreciate long discussions about quantum bones and the ethics of leash-free zones. Bonus points if you love library dates and have a fascination with squeaky toys.",
                         "Scholartown",
-                        "Barktropolis"
+                        "Pennsylvania"
                 ),
                 createAppUser(
                         "rocky_howliday",
@@ -117,7 +117,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Chewing on drumsticks (literally), howling at the moon, and stealing the spotlight at karaoke night. I also dabble in songwriting—my latest hit, ‘Treats and Leashes,’ is climbing the charts.",
                         "Looking for someone who can match my energy and isn’t afraid to live life off-leash. Bonus points if you’re a great backup howler or know your way around a squeaky tambourine.",
                         "Howlington",
-                        "Bark City"
+                        "Georgia"
                 ),
                 createAppUser(
                         "fratdog",
@@ -130,7 +130,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Marking my territory (in style), howling the loudest at karaoke night, and pretending to understand football just to fit in. I also make the best pup-tinis in town—ask anyone at the frat house.",
                         "Looking for a chill pup who loves hanging out on the porch, sneaking bites of pizza crust, and doesn’t mind late-night howls to the moon. Bonus points if you can throw a tennis ball straight after a few rounds of fetch pong.",
                         "Barkademia",
-                        "Howlton"
+                        "Ohio"
                 ),
                 createAppUser(
                         "doofy1",
@@ -143,7 +143,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Accidentally liking my own photos, barking at autoplay videos, and sharing too many pictures of my food bowl. Also, I once tried to friend-request the vacuum cleaner.",
                         "Looking for someone patient enough to teach me how to tag a photo and kind enough not to laugh when I accidentally post 30 selfies in a row. Bonus points if you like long walks where we both get lost and need GPS to find our way home.",
                         "Techsylvania",
-                        "Borksville"
+                        "Michigan"
                 ),
                 createAppUser(
                         "mason_theexplorer",
@@ -156,7 +156,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Rolling in mud, barking at deer, and treating every stick like it’s the Holy Grail. I’m also really good at losing your shoes in the name of exploration.",
                         "Looking for a fellow adventurer who doesn’t mind getting their paws dirty and loves the smell of fresh grass and freedom. Bonus points if you can pack a mean trail snack.",
                         "Pawagonia",
-                        "Wildernessville"
+                        "North Carolina"
                 ),
                 createAppUser(
                         "max_marathoner",
@@ -169,7 +169,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Waking you up at 5 AM for a jog, stealing water bottles from your gym bag, and sprinting after squirrels as part of my HIIT training. Also, I’ve been known to rock a sweatband like no other.",
                         "Looking for a running buddy who doesn’t mind chasing after the sunrise and loves a good cool-down stretch. Bonus points if you’ve got a fastball arm for my post-run fetch sessions.",
                         "Joggersville",
-                        "Trailhound City"
+                        "Arizona"
                 ),
                 createAppUser(
                         "charlie_chowhound",
@@ -182,7 +182,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Begging for table scraps, stealing sandwiches when no one’s looking, and hosting potluck dinners at the dog park (everyone brings bones). I’m also a five-time champion in the annual Pawsville Hot Dog Eating Contest.",
                         "Looking for a partner who shares my love of food and doesn’t mind the occasional bark of approval when the snacks are good. Bonus points if you’re great at finding the best dog-friendly restaurants.",
                         "Chew York",
-                        "Snacktown"
+                        "New Jersey"
                 ),
                 createAppUser(
                         "captain_barkbeard",
@@ -195,7 +195,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Chewing ropes, chasing seagulls, and sniffing out buried treasure at the park. I’m also a master of the growly sea chanty and can navigate my way to the treat jar with no map.",
                         "Looking for a first mate who loves the ocean breeze, long walks on the beach, and has a steady paw for sharing snacks on stormy seas. Bonus points if you know how to tie a good knot or enjoy a game of fetch on the deck.",
                         "Seadog Bay",
-                        "Pawrate Island"
+                        "Virginia"
                 ),
                 createAppUser(
                         "snips_mcfur",
@@ -208,7 +208,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Sniffing out the latest grooming trends, chasing stray hairs, and giving tail-wagging consultations. I’m also the go-to pup for advice on the perfect fur-care routine (treats are a bonus).",
                         "Looking for someone who appreciates a clean coat, loves bubble baths, and doesn’t mind the occasional fur clippings in their kibble. Bonus points if you enjoy long walks to the groomer supply store.",
                         "Trimtown",
-                        "Clipperville"
+                        "Washington"
                 ),
                 createAppUser(
                         "baywatch_buddy",
@@ -221,7 +221,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Digging moats around sandcastles, barking at beach umbrellas, and performing dramatic slow-motion runs along the shoreline. I’ve also been known to steal flip-flops—strictly for rescue practice, of course.",
                         "Looking for a beach buddy who loves the smell of saltwater, doesn’t mind a little sand in their fur, and enjoys splashing around in the waves. Bonus points if you’re great at tossing Frisbees into the surf.",
                         "Pawtona Beach",
-                        "Fetch Island"
+                        "Tennessee"
                 ),
 
                 // FEMALE USERS
@@ -236,7 +236,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Chasing tennis balls, posing for Instagram-worthy pics, and stealing socks (only the good ones).",
                         "Looking for a tall, dark, and handsome pup who can keep up with my zoomies and doesn’t mind sharing snacks. Bonus points if your profile includes a picture of you in a bowtie.",
                         "Barklyn",
-                        "Sniffington"
+                        "Indiana"
                 ),
                 createAppUser(
                         "cocoa_the_chill",
@@ -249,7 +249,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Cuddling, slow walks where I sniff every blade of grass, and side-eyeing squirrels from the comfort of the porch.",
                         "Looking for a laid-back companion who appreciates long naps and doesn’t mind me hogging the comfy spots. Bonus points if you share your blanket and never rush me during walkies.",
                         "Pawmont",
-                        "Tail City"
+                        "Massachusetts"
                 ),
                 createAppUser(
                         "lola_luxury",
@@ -262,7 +262,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Modeling my extensive wardrobe, posing for the camera, and stealing the spotlight at dog park meetups. Also, I have a soft spot for spa days (who doesn’t love a good fur blowout?).",
                         "Seeking a gentleman pup who appreciates a diva with a big heart. Must love photo ops, treat picnics, and long walks to the boutique.",
                         "Glamourville",
-                        "Pawshington"
+                        "Missouri"
                 ),
                 createAppUser(
                         "queen_pawlish",
@@ -275,7 +275,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Bubble baths, gourmet treats served on a silver platter, and lounging on my custom velvet dog bed. I’m also an avid collector of designer collars.",
                         "Looking for a partner who knows how to treat a lady right—compliments, belly rubs, and breakfast in bed are a must. Bonus points if you come with a chauffeur for our playdates.",
                         "Poshville",
-                        "Luxuryville"
+                        "Maryland"
                 ),
                 createAppUser(
                         "carol",
@@ -288,7 +288,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Modeling my seasonal wardrobe, attending pawliday parties, and judging poorly executed belly rubs with a look that says, ‘Really?’ I also have a knack for matchmaking—ask anyone who’s ever shared a doghouse with me.",
                         "Looking for a classy gentleman who appreciates a strong, independent lady. Must enjoy candlelit dinners (kibble optional), polite paw-shakes, and sharing the couch without hogging the blankets.",
                         "Canine Creek",
-                        "Aristopup Estates"
+                        "Wisconsin"
                 ),
                 createAppUser(
                         "dunder_dog",
@@ -301,7 +301,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Quoting my favorite *The Office* lines, chasing tailspins that rival Jim’s pranks, and barking along to the theme song. Also known to host *The Office* trivia nights at the dog park.",
                         "Looking for my Jim—someone who appreciates long walks in the park, comfy naps on the couch, and sharing snacks while we laugh at Michael Scott’s antics. Bonus points if you know how to make paw-some chili (without spilling it).",
                         "Scruffton",
-                        "Dunder Pawlin"
+                        "Colorado"
                 ),
                 createAppUser(
                         "readerspup",
@@ -314,7 +314,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Chewing on leather-bound first editions, chasing pages caught in the wind, and reenacting scenes from Jane Pawsten novels. Also a big fan of cozy reading nooks and warm blankets.",
                         "Looking for a fellow literary enthusiast who loves slow evenings by the fireplace and can handle my quirky habit of quoting Shakespeare in barks. Bonus points if you bring snacks to our book club.",
                         "Booktown",
-                        "Readerville"
+                        "Minnesota"
                 ),
                 createAppUser(
                         "daisy_reads",
@@ -327,7 +327,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Sniffing through old books, writing short ‘tail’ stories, and hosting book club meetings where every member howls their opinions. I also dabble in translating barks into prose.",
                         "Looking for a partner who loves cozy evenings with a good book and can keep up with my endless curiosity. Bonus points if you know how to brew the perfect puppuccino.",
                         "Readerville",
-                        "Pawblic Library"
+                        "South Carolina"
                 ),
                 createAppUser(
                         "dazzling_danny",
@@ -340,7 +340,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Posting flawless selfies, creating viral dance trends, and barking in perfect harmony to my favorite club tracks. I also enjoy late-night puppuccinos and adding rhinestones to my collar.",
                         "Looking for a fellow social media star or someone who can handle a diva with 10K followers. Bonus points if you can keep up with my dance moves and don’t mind being tagged in every photo.",
                         "Pawlywood",
-                        "Glamtown"
+                        "Alabama"
                 ),
                 createAppUser(
                         "lady_pawsington",
@@ -353,7 +353,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Afternoon tea parties, strutting down the park runway in my custom designer leash, and getting daily paw-dicures. I’m also known for my signature twirl when I’m feeling fabulous.",
                         "Looking for a gentleman who knows how to treat a lady—long walks in the park, romantic dinners (with gourmet kibble), and someone who doesn’t mind carrying my shopping bags. Bonus points if you have a taste for luxury!",
                         "Pawington",
-                        "Regaldale"
+                        "Kentucky"
                 ),
                 createAppUser(
                         "luna_shadows",
@@ -366,7 +366,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Staring out of windows dramatically, curling up in cozy blankets with moody music, and collecting bones (strictly for aesthetic purposes). Occasionally seen pawing through vintage collars at thrift shops.",
                         "Looking for a soul who understands that true connection lies in shared silences and meaningful howls at the full moon. Bonus points if your coat is as black as my soul (or at least as dark as my paw pads).",
                         "Midnight Hollow",
-                        "Dusksville"
+                        "Oregon"
                 ),
                 createAppUser(
                         "sassy_sasha",
@@ -379,7 +379,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Playing fetch with frisbees, organizing impromptu howling sessions, and keeping my coat shiny enough to dazzle the crowd at puppy parades. Oh, and I make the best mud pies in the backyard—just ask my neighbors.",
                         "Looking for someone who can match my energy, share snacks during picnics, and doesn’t mind a little friendly competition during tug-of-war. Bonus points if you can teach me a few cool tricks or have a playlist for doggy dance-offs!",
                         "Woofington",
-                        "Playpaw City"
+                        "Oklahoma"
                 ),
                 createAppUser(
                         "missy",
@@ -392,7 +392,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Cuddling in my plush blanket fort, chasing my tail in circles for hours, and pretending not to hear when it's time for a bath. Oh, and I’m basically a treat connoisseur. I know my kibble like a sommeli-dog!",
                         "Looking for someone who’s as down for a lazy Sunday as they are for an impromptu zoomie race around the house. Bonus points if you have a treat jar that's bottomless and an appreciation for the fine art of belly rubs.",
                         "Pawshville",
-                        "Snoutopia"
+                        "Nevada"
                 ),
                 createAppUser(
                         "divadiva",
@@ -405,7 +405,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Exquisite taste in everything—only the finest plush toys, the most exclusive belly rubs, and gourmet meals served at exactly 3pm. If you’re not at least six feet tall, don't even bother looking at my photos.",
                         "Seeking someone who knows their worth and doesn’t mind bowing down to royalty. Must love luxury, adore pampering, and be ready for spontaneous 'catwalk' sessions at the dog park. Bonus points if you can get me the perfect Instagram filter.",
                         "Pawshville",
-                        "Snoutopia"
+                        "Mississippi"
                 ),
                 createAppUser(
                         "whiskers_wagging",
@@ -418,7 +418,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Digging holes, barking at nothing (or so you think), and staring longingly out the window while plotting my next great escape. I'm a master of the 'puppy dog eyes' and will convince you to share your fries, no questions asked.",
                         "Looking for a partner who’s adventurous, doesn’t mind a little dirt, and appreciates a good squirrel chase. Bonus points if you know how to open the fridge or you have a backyard I can explore endlessly. If you’re lucky, I’ll even let you pet me—on MY terms, of course.",
                         "Mischiefville",
-                        "Chasingpaws City"
+                        "Arkansas"
                 ),
 
                 // DEFAULT
@@ -433,7 +433,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Fetch, naps, and belly rubs.",
                         "Looking for someone who enjoys the simple joys in life, like a good game of fetch and a cozy nap.",
                         "DefaultTown",
-                        "DefaultCity"
+                        "DefaultState"
                 ),
                 createAppUser(
                         "test2",
@@ -446,7 +446,7 @@ public class BootstrapData implements CommandLineRunner {
                         "Running, treats, and cuddles.",
                         "Looking for someone to share adventures, snacks, and lazy afternoons.",
                         "DefaultTown",
-                        "DefaultCity"
+                        "DefaultState"
                 )
 
         );
@@ -465,7 +465,7 @@ public class BootstrapData implements CommandLineRunner {
             String interests,
             String lookingFor,
             String city,
-            String country) {
+            String state) {
 
         AppUser user = AppUser.builder()
                 .username(username)
@@ -479,7 +479,7 @@ public class BootstrapData implements CommandLineRunner {
                 .interests(interests)
                 .lookingFor(lookingFor)
                 .city(city)
-                .country(country)
+                .state(state)
                 .photos(photos)
                 .build();
 

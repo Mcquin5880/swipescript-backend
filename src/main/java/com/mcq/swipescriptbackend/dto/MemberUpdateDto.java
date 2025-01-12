@@ -9,5 +9,5 @@ public class MemberUpdateDto {
     private String lookingFor;
     private String interests;
     private String city;
-    private String country;
+    private String state;
 }

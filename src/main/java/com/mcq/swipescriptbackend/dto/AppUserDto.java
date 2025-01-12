@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class AppUserDto {
 
-    private int id;
+    private long id;
     private String username;
     private String photoUrl;
     private String knownAs;
@@ -23,6 +23,6 @@ public class AppUserDto {
     private String interests;
     private String lookingFor;
     private String city;
-    private String country;
+    private String state;
     private List<Photo> photos;
 }
