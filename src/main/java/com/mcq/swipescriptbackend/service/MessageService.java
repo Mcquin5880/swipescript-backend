@@ -68,6 +68,7 @@ public class MessageService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     public void markUnreadMessagesAsRead(List<Message> messages, AppUser recipient) {
         messages.stream()
                 .filter(message -> message.getRecipient().equals(recipient) && message.getDateRead() == null)
@@ -82,6 +83,22 @@ public class MessageService {
         Page<Message> messages = messageRepository.findMessagesForUser(params.getUsername(), params.getContainer(), pageRequest);
 
         return messages.map(this::toDto);
+    }
+
+    @Transactional
+    public void deleteMessage(Long messageId, String currentUsername) {
+        Message message = messageRepository.findById(messageId)
+                .orElseThrow(() -> new IllegalArgumentException("Message not found with ID: " + messageId));
+
+        if (message.getSenderUsername().equals(currentUsername)) {
+            message.setSenderDeleted(true);
+        } else if (message.getRecipientUsername().equals(currentUsername)) {
+            message.setRecipientDeleted(true);
+        } else {
+            throw new IllegalArgumentException("You are not authorized to delete this message.");
+        }
+
+        messageRepository.save(message);
     }
 
     private MessageDto toDto(Message message) {

@@ -11,8 +11,8 @@ import java.util.List;
 public interface MessageRepository extends JpaRepository<Message, Long> {
 
     @Query("SELECT m FROM Message m " +
-            "WHERE (m.sender.id = :userId1 AND m.recipient.id = :userId2) " +
-            "   OR (m.sender.id = :userId2 AND m.recipient.id = :userId1) " +
+            "WHERE ((m.sender.id = :userId1 AND m.recipient.id = :userId2 AND m.senderDeleted = false) " +
+            "   OR (m.sender.id = :userId2 AND m.recipient.id = :userId1 AND m.recipientDeleted = false)) " +
             "ORDER BY m.messageSent ASC")
     List<Message> findMessageThreadBetweenUsers(Long userId1, Long userId2);
 

@@ -57,6 +57,13 @@ public class MessageController {
         return ResponseEntity.ok(thread);
     }
 
+    @DeleteMapping("/{messageId}")
+    public ResponseEntity<Void> deleteMessage(@PathVariable Long messageId) {
+        String currentUsername = getCurrentUsername();
+        messageService.deleteMessage(messageId, currentUsername);
+        return ResponseEntity.noContent().build();
+    }
+
     private String getCurrentUsername() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
