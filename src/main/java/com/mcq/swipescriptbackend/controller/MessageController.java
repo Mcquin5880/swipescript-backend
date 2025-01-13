@@ -50,8 +50,8 @@ public class MessageController {
         return ResponseEntity.ok().headers(headers).body(messages);
     }
 
-    @GetMapping("/thread")
-    public ResponseEntity<List<MessageDto>> getMessageThread(@RequestParam String recipientUsername) {
+    @GetMapping("/thread/{recipientUsername}")
+    public ResponseEntity<List<MessageDto>> getMessageThread(@PathVariable String recipientUsername) {
         String currentUsername = getCurrentUsername();
         List<MessageDto> thread = messageService.getMessageThread(currentUsername, recipientUsername);
         return ResponseEntity.ok(thread);
