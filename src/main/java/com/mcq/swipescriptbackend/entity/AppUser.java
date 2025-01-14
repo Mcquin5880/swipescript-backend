@@ -83,4 +83,7 @@ public class AppUser {
     protected void onCreate() {
         this.created = LocalDateTime.now();
     }
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<String> roles = new HashSet<>();
 }

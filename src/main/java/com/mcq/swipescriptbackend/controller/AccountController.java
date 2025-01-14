@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Set;
+
 @RestController
 @RequestMapping("/api/account")
 @RequiredArgsConstructor
@@ -49,6 +51,7 @@ public class AccountController {
                 .gender(registrationRequestDto.getGender())
                 .city(registrationRequestDto.getCity())
                 .state(registrationRequestDto.getState())
+                .roles(Set.of("USER"))
                 .build();
 
         appUserRepository.save(newUser);
@@ -63,7 +66,6 @@ public class AccountController {
         String token = jwtUtil.generateJwtToken((org.springframework.security.core.userdetails.User) authentication.getPrincipal());
         return ResponseEntity.ok(new LoginResponseDto(newUser.getUsername(), token, newUser.getGender(), newUser.getKnownAs(), null));
     }
-
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequestDto loginRequestDto) {

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Component
 @RequiredArgsConstructor
@@ -27,6 +28,22 @@ public class BootstrapData implements CommandLineRunner {
     public void run(String... args) {
 
         List<AppUser> testUsers = List.of(
+
+                // TEST ADMIN
+                createAppUser(
+                        "ADMIN",
+                        "password",
+                        LocalDate.of(1988, 6, 23),
+                        "Mr Admin",
+                        "male",
+                        List.of(createPhoto("default1.png", true)),
+                        "testing",
+                        "testing",
+                        "123",
+                        "Chattanooga",
+                        "Tennessee"
+                ),
+
                 // MALE USERS
                 createAppUser(
                         "barkley_paws",
@@ -467,6 +484,8 @@ public class BootstrapData implements CommandLineRunner {
             String city,
             String state) {
 
+        String role = username.equals("ADMIN") ? "ADMIN" : "USER";
+
         AppUser user = AppUser.builder()
                 .username(username)
                 .password(passwordEncoder.encode(password))
@@ -481,6 +500,7 @@ public class BootstrapData implements CommandLineRunner {
                 .city(city)
                 .state(state)
                 .photos(photos)
+                .roles(Set.of(role))
                 .build();
 
         // Set the reverse relationship
