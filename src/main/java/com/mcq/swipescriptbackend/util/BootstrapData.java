@@ -59,6 +59,19 @@ public class BootstrapData implements CommandLineRunner {
                         "California"
                 ),
                 createAppUser(
+                        "mr_handsome",
+                        "pawsome123",
+                        LocalDate.of(1995, 4, 1),
+                        "Brad Pawpit",
+                        "male",
+                        List.of(createPhoto("mr_handsome.png", true)),
+                        "Legend says mirrors were invented so I could admire myself. I’m the George Clooney of canines, the canine calendar model your dog wishes they were. Whether it’s smoldering looks or my pawfectly tousled fur, I’m always ready for my close-up.",
+                        "Striking a pose, stealing hearts (and occasionally sandwiches), and giving my reflection a run for its money. I also enjoy barking in slow motion for dramatic effect and perfecting the ‘I didn’t just knock that over’ face.",
+                        "Looking for someone who can handle this much charm and isn’t intimidated by my dazzling good looks. Bonus points if you can give belly rubs without getting distracted by my mesmerizing eyes.",
+                        "Charmington",
+                        "California"
+                ),
+                createAppUser(
                         "rufus_rascal",
                         "rufflife123",
                         LocalDate.of(2006, 11, 8),
@@ -90,7 +103,7 @@ public class BootstrapData implements CommandLineRunner {
                         LocalDate.of(1999, 4, 25),
                         "Ian",
                         "male",
-                        List.of(createPhoto("woofman.png", true), createPhoto("woofman2.png", false)),
+                        List.of(createPhoto("woofman.png", true)),
                         "Certified gym bro and canine fitness influencer. Whether it’s hitting the dog park for sprints or maxing out reps with my chew toy dumbbells, I live for the grind. My motto? 'Every day is leg day when you’re a quadruped.'",
                         "Spilling my protein shake all over the floor, chasing my tail for cardio, and barking at mirrors (I mean, who is that handsome dog?). Also, I’ve been known to hog the tennis ball machine at the park.",
                         "Looking for a workout partner who can keep up with my energy and doesn’t mind sharing their snacks post-workout. Bonus points if you can throw a Frisbee far enough for me to break a sweat!",

@@ -17,7 +17,8 @@ public interface AppUserRepository extends JpaRepository<AppUser, Long> {
             "WHERE (:gender IS NULL OR u.gender = :gender) " +
             "AND (:minAge IS NULL OR (YEAR(CURRENT_DATE) - YEAR(u.dateOfBirth)) >= :minAge) " +
             "AND (:maxAge IS NULL OR (YEAR(CURRENT_DATE) - YEAR(u.dateOfBirth)) <= :maxAge) " +
-            "AND u.username <> :currentUsername")
+            "AND u.username <> :currentUsername " +
+            "AND 'ADMIN' NOT MEMBER OF u.roles")
     Page<AppUser> findFilteredUsers(
             @Param("gender") String gender,
             @Param("minAge") Integer minAge,

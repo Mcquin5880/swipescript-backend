@@ -2,7 +2,6 @@ package com.mcq.swipescriptbackend.controller;
 
 import com.mcq.swipescriptbackend.entity.AppUser;
 import com.mcq.swipescriptbackend.repository.AppUserRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
