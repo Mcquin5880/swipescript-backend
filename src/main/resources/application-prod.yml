@@ -22,3 +22,7 @@ jwt:
 app:
   image:
     url-prefix: "https://swipescript-6cf6f2af0d1a.herokuapp.com/images/"
+
+admin:
+  default:
+    password: ${ADMIN_PASSWORD}

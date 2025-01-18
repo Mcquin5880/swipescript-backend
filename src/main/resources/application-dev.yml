@@ -24,3 +24,7 @@ jwt:
 app:
   image:
     url-prefix: "http://localhost:8080/images/"
+
+admin:
+  default:
+    password: "password"

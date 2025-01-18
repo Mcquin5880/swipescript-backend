@@ -24,6 +24,9 @@ public class BootstrapData implements CommandLineRunner {
     @Value("${app.image.url-prefix}")
     private String imageUrlPrefix;
 
+    @Value("${admin.default.password}")
+    private String adminPassword;
+
     @Override
     public void run(String... args) {
 
@@ -32,7 +35,7 @@ public class BootstrapData implements CommandLineRunner {
                 // TEST ADMIN
                 createAppUser(
                         "ADMIN",
-                        "password",
+                        adminPassword,
                         LocalDate.of(1988, 6, 23),
                         "Mr Admin",
                         "male",
