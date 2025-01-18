@@ -21,6 +21,6 @@ cloudinary:
 jwt:
   secret: "${JWT_SECRET}"
 
-#app:
-#  image:
-#    url-prefix: "http://localhost:8080/images/"
+app:
+  image:
+    url-prefix: "http://localhost:8080/images/"
