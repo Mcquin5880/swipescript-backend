@@ -49,3 +49,12 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+bootJar {
+    mainClass = 'com.mcq.swipescriptbackend.SwipescriptBackendApplication'
+    archiveClassifier = ''
+}
+
+jar {
+    enabled = false
+}
