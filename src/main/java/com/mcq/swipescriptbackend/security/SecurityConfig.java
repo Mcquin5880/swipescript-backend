@@ -54,10 +54,9 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(List.of(
-                "http://localhost:4200", // For local testing
-                "http://swipescript-test.us-east-1.elasticbeanstalk.com", // AWS domain
-                "http://swipescript-fe.s3-website.us-east-2.amazonaws.com", // S3 Domain todo can remove
-                "http://staging.dxbninb5t4gjq.amplifyapp.com" // Amplify domain
+                "http://localhost:4200",
+                "https://swipescript-test.us-east-1.elasticbeanstalk.com",
+                "https://staging.d1sppc5dxxo4rx.amplifyapp.com"
         ));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));

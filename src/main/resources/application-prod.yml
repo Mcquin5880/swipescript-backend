@@ -1,11 +1,9 @@
 server:
-  port: 5000
+  port: ${PORT:8080}
 
 spring:
   datasource:
-    url: jdbc:postgresql://${RDS_HOSTNAME}:${RDS_PORT}/${RDS_DB_NAME}
-    username: ${RDS_USERNAME}
-    password: ${RDS_PASSWORD}
+    url: ${DATABASE_URL}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -21,6 +19,6 @@ cloudinary:
 jwt:
   secret: "${JWT_SECRET}"
 
-app:
-  image:
-    url-prefix: "http://swipescript-test.us-east-1.elasticbeanstalk.com/images/"
+#app:
+#  image:
+#    url-prefix: "https://swipescript-test.us-east-1.elasticbeanstalk.com/images/"
