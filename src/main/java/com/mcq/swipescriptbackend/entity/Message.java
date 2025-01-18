@@ -3,7 +3,7 @@ package com.mcq.swipescriptbackend.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Entity
 @Table(name = "messages")
@@ -21,14 +21,18 @@ public class Message {
     private long id;
 
     private String senderUsername;
+
     private String recipientUsername;
 
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    private LocalDateTime dateRead;
-    private LocalDateTime messageSent;
+    private Instant dateRead;
+
+    private Instant messageSent;
+
     private boolean senderDeleted;
+
     private boolean recipientDeleted;
 
     @ManyToOne

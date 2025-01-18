@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Component
 public class LastActiveInterceptor implements HandlerInterceptor {
@@ -26,7 +26,7 @@ public class LastActiveInterceptor implements HandlerInterceptor {
             String username = ((UserDetails) principal).getUsername();
 
             appUserRepository.findByUsername(username).ifPresent(user -> {
-                user.setLastActive(LocalDateTime.now());
+                user.setLastActive(Instant.now());
                 appUserRepository.save(user);
             });
         }

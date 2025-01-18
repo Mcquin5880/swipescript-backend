@@ -7,7 +7,7 @@ import com.mcq.swipescriptbackend.entity.Photo;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Service
 public class AppUserService {
@@ -45,6 +45,6 @@ public class AppUserService {
         user.setInterests(memberUpdateDto.getInterests());
         user.setCity(memberUpdateDto.getCity());
         user.setState(memberUpdateDto.getState());
-        user.setLastActive(LocalDateTime.now());
+        user.setLastActive(Instant.now());
     }
 }

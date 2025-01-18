@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Data
 @AllArgsConstructor
@@ -21,6 +21,6 @@ public class MessageDto {
     private String recipientUsername;
     private String recipientPhotoUrl;
     private String content;
-    private LocalDateTime dateRead;
-    private LocalDateTime messageSent;
+    private Instant dateRead;
+    private Instant messageSent;
 }

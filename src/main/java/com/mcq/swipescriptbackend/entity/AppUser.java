@@ -3,8 +3,8 @@ package com.mcq.swipescriptbackend.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.HashSet;
 import java.util.List;
@@ -33,9 +33,9 @@ public class AppUser {
     private String knownAs;
 
     @Column(updatable = false)
-    private LocalDateTime created;
+    private Instant created;
 
-    private LocalDateTime lastActive;
+    private Instant lastActive;
 
     private String gender;
 
@@ -81,7 +81,7 @@ public class AppUser {
 
     @PrePersist
     protected void onCreate() {
-        this.created = LocalDateTime.now();
+        this.created = Instant.now();
     }
 
     @ElementCollection(fetch = FetchType.EAGER)

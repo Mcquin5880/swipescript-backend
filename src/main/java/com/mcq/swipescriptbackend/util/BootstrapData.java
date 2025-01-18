@@ -9,8 +9,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -505,8 +505,8 @@ public class BootstrapData implements CommandLineRunner {
                 .dateOfBirth(dateOfBirth)
                 .knownAs(knownAs)
                 .gender(gender)
-                .created(LocalDateTime.now().minusDays(30))
-                .lastActive(LocalDateTime.now())
+                .created(Instant.now())
+                .lastActive(Instant.now())
                 .introduction(introduction)
                 .interests(interests)
                 .lookingFor(lookingFor)

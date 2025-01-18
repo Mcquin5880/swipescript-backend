@@ -2,19 +2,19 @@ package com.mcq.swipescriptbackend.service;
 
 import com.mcq.swipescriptbackend.dto.CreateMessageRequestDto;
 import com.mcq.swipescriptbackend.dto.MessageDto;
+import com.mcq.swipescriptbackend.dto.helpers.MessageParams;
 import com.mcq.swipescriptbackend.entity.AppUser;
 import com.mcq.swipescriptbackend.entity.Message;
 import com.mcq.swipescriptbackend.entity.Photo;
 import com.mcq.swipescriptbackend.repository.AppUserRepository;
 import com.mcq.swipescriptbackend.repository.MessageRepository;
-import com.mcq.swipescriptbackend.dto.helpers.MessageParams;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,7 +42,7 @@ public class MessageService {
                 .senderUsername(sender.getUsername())
                 .recipientUsername(recipient.getUsername())
                 .content(request.getContent())
-                .messageSent(LocalDateTime.now())
+                .messageSent(Instant.now())
                 .build();
 
         Message savedMessage = messageRepository.save(message);
@@ -73,7 +73,7 @@ public class MessageService {
         messages.stream()
                 .filter(message -> message.getRecipient().equals(recipient) && message.getDateRead() == null)
                 .forEach(message -> {
-                    message.setDateRead(LocalDateTime.now());
+                    message.setDateRead(Instant.now());
                     messageRepository.save(message);
                 });
     }

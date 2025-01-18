@@ -4,7 +4,7 @@ import com.mcq.swipescriptbackend.entity.Photo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 
 @Data
@@ -16,8 +16,8 @@ public class AppUserDto {
     private String photoUrl;
     private String knownAs;
     private int age;
-    private LocalDateTime created;
-    private LocalDateTime lastActive;
+    private Instant created;
+    private Instant lastActive;
     private String gender;
     private String introduction;
     private String interests;
