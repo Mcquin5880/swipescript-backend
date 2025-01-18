@@ -19,6 +19,6 @@ cloudinary:
 jwt:
   secret: "${JWT_SECRET}"
 
-#app:
-#  image:
-#    url-prefix: "https://swipescript-test.us-east-1.elasticbeanstalk.com/images/"
+app:
+  image:
+    url-prefix: "https://swipescript-6cf6f2af0d1a.herokuapp.com/images/"
