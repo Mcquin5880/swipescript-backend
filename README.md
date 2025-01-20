@@ -1,6 +1,6 @@
-# MCQ SwipeScript  
+# SwipeScript  
 
-[Visit the Website](https://app.mcq-swipescript.com)  
+[Visit the Website](https://app.mcq-swipescript.com)  (note: only supported as a desktop web application for now - hoping to implement support for mobile soon!)
 
 MCQ SwipeScript is a full-stack application built with **Angular** and **Spring Boot**. This project showcases modern web development with features such as user messaging, profile browsing, and seamless integration between the frontend and backend.
 
