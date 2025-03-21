@@ -7,4 +7,3 @@ SwipeScript is a full-stack application built with **Angular** and **Spring Boot
 ## Key Features
 - User-friendly interface for exploring and managing profiles.
 - Real-time messaging with efficient pagination.
-- Fully responsive design for desktop and mobile devices.
